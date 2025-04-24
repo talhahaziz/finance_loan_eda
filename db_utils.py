@@ -40,6 +40,13 @@ class RDSDatabaseConnector:
         print("successfully extracted the data.")
         return extract
     
+    def save_data(self, df, filename ='loan_payments.csv'):
+
+        try:
+            df.to_csv(filename, index=False)
+            print(f"Data successfully saved to {filename}")
+        except Exception as e:
+            print(f"Error saving data: {e}")
 
 if __name__ == "__main__":
         
