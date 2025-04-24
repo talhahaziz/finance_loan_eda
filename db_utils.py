@@ -24,3 +24,24 @@ class RDSDatabaseConnector:
             f"@{self.credentials['RDS_HOST']}:{self.credentials['RDS_PORT']}/{self.credentials['RDS_DATABASE']}")
         
         return engine
+    
+    def extract_data(self):
+        """
+        Extracts data from the loan_payments table
+        Returns:
+            pandas.DataFrame: The extracted data
+        """
+        engine = self.init_db_engine()
+        query = "SELECT * FROM loan_payments"
+
+        print("connectin to database..")
+        extract = pd.read_sql(query, engine)
+
+        print("successfully extracted the data.")
+        return extract
+    
+
+if __name__ == "__main__":
+        
+    connector = RDSDatabaseConnector("credentials.yaml")
+    loan_data = connector.extract_data()
