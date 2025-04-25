@@ -3,8 +3,8 @@ import pandas as pd
 from sqlalchemy import create_engine, text
 
 def load_credentials(filepath ="credentials.yaml"):
-    with open(filepath, 'r') as f:
-        db_dict = yaml.safe_load(f)
+    with open(filepath, 'r') as c:
+        db_dict = yaml.safe_load(c)
     
     return db_dict
 
@@ -40,13 +40,27 @@ class RDSDatabaseConnector:
         print("successfully extracted the data.")
         return extract
     
-    def save_data(self, df, filename ='loan_payments.csv'):
+    def save_data(self, df, file):
 
         try:
-            df.to_csv(filename, index=False)
-            print(f"Data successfully saved to {filename}")
+            df.to_csv(file, index=False)
+            print(f"Data successfully saved to {file}")
         except Exception as e:
             print(f"Error saving data: {e}")
+
+    def load_data(self, file):
+        ''' load the csv into dataframe
+        
+        Args:
+            file: the path to the csv file that will be read
+
+        returns:
+            a dataframe containing data from the csv file
+        '''
+        with open(file, 'r') as f:
+            df = pd.read_csv(f)
+
+        return df
 
 if __name__ == "__main__":
         
