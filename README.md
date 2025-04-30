@@ -1,8 +1,8 @@
-### Finance-Loan-EDA
+## Finance-Loan-EDA
 
 Exploratory Data Analysis of a customer loan portfolio to uncover trends, patterns, and risks within a financial institution. This project aims to support informed decisions on loan approvals, pricing, and risk management by using statistical and visualization techniques to improve portfolio performance and profitability.
 
-## Task 1 - RDSDatabse Connector Setup
+# Task 1 - RDSDatabse Connector Setup
 
 - Created my 'credentials.yaml' and included the AWS database connection details
 
@@ -44,3 +44,7 @@ Exploratory Data Analysis of a customer loan portfolio to uncover trends, patter
 
       return df
   ```
+
+# Task 2 - Exploratory Data Analysis
+
+- I created a new file named db_analysis.py which will be used to load the data in pandas this way i can manipulate and perforom exploratory data analysis.
