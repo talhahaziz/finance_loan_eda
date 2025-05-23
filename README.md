@@ -4,47 +4,99 @@ Exploratory Data Analysis of a customer loan portfolio to uncover trends, patter
 
 # Task 1 - RDSDatabse Connector Setup
 
-- Created my 'credentials.yaml' and included the AWS database connection details
+Created a 'credentials.yaml' file and included the AWS database RDS connection details. The RDSDatabase connector will use these to connect to the database securely.
 
-- Initiated the class RDSDatabaseConnector:
+### 🔧 Class Initialisation
 
-  ```python
-      class RDSDatabaseConnector:
+1. Initiated the class RDSDatabaseConnector:
 
-          def __init__(self, credentials: str):
-              """
-              Initialising the database connector with the connector dict
-              """
-              self.credentials = load_credentials(credentials)
-  ```
+```python
+class RDSDatabaseConnector:
 
-  1. Created the `init_db_engine()`function which initialises SQAlchemy engine using the following connection:
+    def __init__(self, credentials: str):
+        """
+        Initialising the database connector with the connector dict
+        """
+        self.credentials = load_credentials(credentials)
+```
 
-  ```python
-  engine = create_engine(f"postgresql+psycopg2://{self.credentials['RDS_USER']}:{self.credentials['RDS_PASSWORD']}"
+### ⚙️ Database Engine Setup
+
+2. Created the `init_db_engine()`method which initialises SQAlchemy engine using the credentials from the YAML file and the following connection:
+
+```python
+engine = create_engine(f"postgresql+psycopg2://{self.credentials['RDS_USER']}:{self.credentials['RDS_PASSWORD']}"
           f"@{self.credentials['RDS_HOST']}:{self.credentials['RDS_PORT']}/{self.credentials['RDS_DATABASE']}")
-  ```
+```
 
-  1. The `extract_data()` method handles the data extraction of the loan payment data from the RDSDatabase, Executed the SQL Query to select all records from the `loan_payments` table then used the `pd.read.sql()` function to load the query results into DataFrame the `return extract` will return the dataframe containing all the loan peyment records.
+### 📥 Data Extraction
 
-  ```python
-  def extract_data(self):
-      engine = self.init_db_engine()
-      query = "SELECT * FROM loan_payments"
-      extract = pd.read_sql(query, engine)
-      return extract
-  ```
+3. The `extract_data()` method handles the data extraction of the loan payment data from the RDSDatabase, Executed the SQL Query to select all records from the `loan_payments` table then used the `pd.read.sql()` function to load the query results into DataFrame the `return extract` will return the dataframe containing all the loan peyment records.
 
-  1. the `save_data()` method handles saving the data into a csv file on my local device the csv will then be used to load the data and query it to clean the data
+```python
+def extract_data(self):
+    engine = self.init_db_engine()
+    query = "SELECT * FROM loan_payments"
+    extract = pd.read_sql(query, engine)
+    return extract
+```
 
-  ```python
-  def load_data(self, file):
-      with open(file, 'r') as f:
-          df = pd.read_csv(f)
+### 💾 Data Save & Loading
 
-      return df
-  ```
+4. the `save_data()` method handles saving the data into a csv file on my local device the csv will then be used to load the data and query it to clean the data
+
+```python
+def load_data(self, file):
+    with open(file, 'r') as f:
+        df = pd.read_csv(f)
+
+    return df
+```
 
 # Task 2 - Exploratory Data Analysis
 
-- I created a new file named db_analysis.py which will be used to load the data in pandas this way i can manipulate and perforom exploratory data analysis.
+I created a new file named **db_analysis.py** which will be used to load the data in pandas to manipulate the data to print what I need to see such as the shape, columns, etc...
+
+By using the function known as main gaurd as shown below:
+
+```python
+if __name__ == "__main__":
+    main()
+```
+
+I can run only the selected code that lies within the `main()` which essentially tells python to - Only run the `main()` function if this file is being run directly, not if it’s being imported as a module somewhere else.
+
+## Formatting Table
+
+Created the data_tranform.py file which will be used to format the table correctly so its prepared for data extraction. The `DataTranform()`class will be used to handle the format conversions
+
+- Checking data types of columns
+- Converting string columns datetime/numeric types
+- Removing unwanted symbols (like $, %, etc.) from
+
+### 🔧 Class Initialisation
+
+1.  Data Tranform class initalise
+
+```python
+class DataTransform:
+    def __init__(self, df):
+        '''
+        Args:
+            df: pandas DataFrame containing loan payment data
+        '''
+        self.df = df.copy() #copy is created to avoid messing up the original
+```
+
+### 📦 Tranformation Functions
+
+Functions overview:
+
+| Method                     | Purpose                                            |
+| -------------------------- | -------------------------------------------------- |
+| check_data_types()         | Prints current data types of all columns           |
+| convert_to_datetime()      | Converts a column to datetime using a given format |
+| convert_to_numeric(column) | Converts values to numeric (int/float)             |
+| to_category(columns)       | Categorises the chosen column                      |
+| to_int(column)             | Converts column to integer                         |
+| summary()                  | Prints summary of the data types                   |
