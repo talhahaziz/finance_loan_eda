@@ -92,11 +92,11 @@ class DataTransform:
 
 Functions overview:
 
-| Method                     | Purpose                                            |
-| -------------------------- | -------------------------------------------------- |
-| check_data_types()         | Prints current data types of all columns           |
-| convert_to_datetime()      | Converts a column to datetime using a given format |
-| convert_to_numeric(column) | Converts values to numeric (int/float)             |
-| to_category(columns)       | Categorises the chosen column                      |
-| to_int(column)             | Converts column to integer                         |
-| summary()                  | Prints summary of the data types                   |
+| Method                     | Purpose                                                 |
+| -------------------------- | ------------------------------------------------------- |
+| check_data_types()         | Prints current data types of all columns                |
+| convert_to_datetime()      | Converts a column to datetime using a given format      |
+| convert_to_numeric(column) | Converts values to numeric (int/float)                  |
+| to_category(columns)       | Categorises the chosen column to a cateogry - 0,1,2 etc |
+| to_int(column)             | Converts column to integer                              |
+| summary()                  | Prints summary of the data types                        |
