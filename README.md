@@ -100,3 +100,19 @@ Functions overview:
 | to_category(columns)       | Categorises the chosen column to a cateogry - 0,1,2 etc |
 | to_int(column)             | Converts column to integer                              |
 | summary()                  | Prints summary of the data types                        |
+
+## Extract information from DataFrame
+
+After converting the columns into a more appropriate format I made the class `DataFrameInfo` in a new python file to extract info from the DataFrame to give insights into the data.
+
+The purpose of this file is to streamline exploratory data analysis (EDA) by automating the display of basic statistics, null values, distinct counts, and overall structure of the dataset.
+
+### Information Extraction
+
+| Method             | Purpose                                                          |
+| ------------------ | ---------------------------------------------------------------- |
+| describe_columns() | Displays basic info on each column (dtype, non-null count)       |
+| get_stats()        | Prints statistical summary incl. mean, std, min, max, and median |
+| count_distinct()   | Displays count of distinct values in each column                 |
+| count_nulls()      | Shows count and percentage of missing/null values per column     |
+| display_shape()    | Prints the number of rows and columns in the DataFrame           |
