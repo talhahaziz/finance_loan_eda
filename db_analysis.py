@@ -1,12 +1,20 @@
 from db_utils import RDSDatabaseConnector
 from data_transform import DataTransform
+from data_frame_info import DataFrameInfo
+from DataFrameTransform import DataFrameTransform
+from plotter import Plotter
 import pandas as pd
 
 def main():
     
     df = pd.read_csv("loan_payments.csv")
-    transformer = DataTransform(df)  # Load the CSV file into a DataFrame
-    transformer.check_data_types()  # Check the data types of the DataFrame
+
+    transform = DataTransform(df)  # Load the CSV file into a DataFrame
+    transform.check_data_types()  # Check the data types of the DataFrame
+    
+    info = DataFrameInfo(df)
+
+   
 
 
 def connection():
