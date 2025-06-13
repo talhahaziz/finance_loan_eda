@@ -1,9 +1,11 @@
 from db_utils import RDSDatabaseConnector
-from data_transform import DataTransform
-from data_frame_info import DataFrameInfo
+from DataTransform import DataTransform
+from DataFrameInfo import DataFrameInfo
 from DataFrameTransform import DataFrameTransform
-from plotter import Plotter
+from Plotter import Plotter
 import pandas as pd
+
+
 
 def main():
     
