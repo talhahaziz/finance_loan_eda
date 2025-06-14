@@ -1,8 +1,8 @@
 from db_utils import RDSDatabaseConnector
-from DataTransform import DataTransform
-from DataFrameInfo import DataFrameInfo
-from DataFrameTransform import DataFrameTransform
-from Plotter import Plotter
+from datatransform import DataTransform
+from dataframeinfo import DataFrameInfo
+from dataframetransform import DataFrameTransform
+from plotter import Plotter
 import pandas as pd
 
 
