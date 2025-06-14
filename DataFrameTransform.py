@@ -3,7 +3,7 @@ import pandas as pd
 
 #This file is being used to impute null values, drop columns with high null values and count null values in the df
 
-class DataFrameTransform():
+class DataFrameTransform:
 
     def __init__(self, df):
         """
