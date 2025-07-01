@@ -29,11 +29,11 @@ class DataFrameInfo:
         print("DataFrame Statistics:")
         print(stats)
 
-    def count_distinct(self):
+    def count_distinct(self, col):
         """
         Counts distinct values in each column of the DataFrame.
         """
-        distinct_counts = self.df.nunique()
+        distinct_counts = self.d[col].nunique()
         print("Distinct Value Counts:")
         print(distinct_counts)
 
